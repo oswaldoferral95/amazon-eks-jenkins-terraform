@@ -48,6 +48,12 @@ pipeline {
                 }
             }
         }
+	stage('Run local image'){
+	  steps {
+	   echo'************* Running container *************'
+	   sh("docker run -d -p 80:8080 --restart=unless-stopped --name petclinic registry.hub.docker.com/oswaldofm/petclinic-spinnaker-jenkins")
+	  }
+	}
         stage('Remove local images') {
             steps {
                 echo '=== Delete the local docker images ==='
